@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+     Copyright (C) 2016 Crystal Rom
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+          http://www.apache.org/licenses/LICENSE-2.0
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources>
+    <string name="updater_title">Aggiorna</string>
+    <string name="updater_show_changelog">Tocca per vedere il cambiamenti</string>
+    <string name="contributors_title">Contributori</string>
+    <string name="default_account_name">Utente</string>
+    <string name="user_tile_category">Modifica Tile Utente</string>
+    <string name="user_tile_image_title">Immagine Utente</string>
+    <string name="user_tile_name_title">Nome Utente</string>
+    <string name="user_tile_image_summary">Scegli un\'immagine</string>
+    <string name="user_tile_name_summary">Scegli un nome</string>
+    <string name="user_tile_replace_summary">Sostituisci l\'icona col logo di Crystal Rom</string>
+    <string name="crystal_version">Versione Crystal Rom</string>
+    <string name="crystal_codename">Codename Crystal Rom</string>
+    <string name="crystal_branch">Branch Crystal Rom</string>
+    <string name="crystal_api">Livello API Crystal Rom</string>
+    <string name="crystal_flavour">Tipo Crystal Rom</string>
+    <string name="default_crystal_version">Sconosciuta</string>
+    <string name="default_crystal_codename">X</string>
+    <string name="default_crystal_branch">Sconosciuta</string>
+    <string name="default_crystal_api">Sconosciuta</string>
+    <string name="default_crystal_flavour">SHATTERED</string>
+</resources>

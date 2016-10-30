@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Copyright (C) 2016 Crystal Rom
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+          http://www.apache.org/licenses/LICENSE-2.0
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/build_section_title">
+        <!-- Crystal Rom Version -->
+        <PreferenceScreen android:key="crystal_version"
+                android:enabled="false"
+                android:shouldDisableView="false"
+                android:title="@string/crystal_version"
+                android:summary="@string/default_crystal_version" />
+                
+        <!-- Crystal Rom Codename-->
+        <PreferenceScreen android:key="crystal_codename"
+                android:enabled="false"
+                android:shouldDisableView="false"
+                android:title="@string/crystal_codename"
+                android:summary="@string/default_crystal_codename" />
+                
+        <!-- Crystal Rom Branch -->
+        <PreferenceScreen android:key="crystal_branch"
+                android:enabled="false"
+                android:shouldDisableView="false"
+                android:title="@string/crystal_branch"
+                android:summary="@string/default_crystal_branch" />
+
+        <!-- Crystal OS API Level -->
+        <PreferenceScreen android:key="crystal_api"
+                android:enabled="false"
+                android:shouldDisableView="false"
+                android:title="@string/crystal_api"
+                android:summary="@string/default_crystal_api" />
+        
+        <!-- Crystal Rom Flavour -->
+        <PreferenceScreen android:key="crystal_flavour"
+                android:enabled="false"
+                android:shouldDisableView="false"
+                android:title="@string/crystal_flavour"
+                android:summary="@string/default_crystal_flavour" />
+        
+        <!-- Crystal Rom Changelog -->
+        <PreferenceScreen android:key="crystal_changelog"
+                android:title="@string/changelog_title">
+		<intent android:action="android.intent.action.MAIN"
+                    android:targetPackage="it.eskilop.crystalshards"
+		    android:targetClass="it.eskilop.crystalshards.activities.ChangelogActivity" />
+	      </PreferenceScreen>
+        
+        <!-- Crystal Rom Contributors -->
+        <PreferenceScreen android:key="crystal_contributors"
+                android:title="@string/contributors_title">
+		<intent android:action="android.intent.action.MAIN"
+                    android:targetPackage="it.eskilop.crystalshards"
+                    android:targetClass="it.eskilop.crystalshards.activities.ContributorsActivity" />
+	      </PreferenceScreen>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/maintenance_section_title">
+        <!-- Crystal Rom Updater -->
+        <PreferenceScreen android:key="crystal_updater"
+                android:title="@string/updater_title">
+                <intent android:action="android.intent.action.MAIN"
+                    android:targetPackage="it.eskilop.crystalshards"
+                    android:targetClass="it.eskilop.crystalshards.activities.UpdaterActivity" />
+        </PreferenceScreen>
+    </PreferenceCategory>
+</PreferenceScreen>
