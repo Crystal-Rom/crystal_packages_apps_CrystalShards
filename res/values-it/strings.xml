@@ -17,6 +17,8 @@
     <string name="updater_title">Aggiorna</string>
     <string name="updater_show_changelog">Tocca per vedere il cambiamenti</string>
     <string name="contributors_title">Contributori</string>
+    <string name="build_section_title">Info sulla build</string>
+    <string name="maintenance_section_title">Manutenzione</string>
     <string name="default_account_name">Utente</string>
     <string name="user_tile_category">Modifica Tile Utente</string>
     <string name="user_tile_image_title">Immagine Utente</string>

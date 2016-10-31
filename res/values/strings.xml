@@ -18,6 +18,8 @@
     <string name="updater_show_changelog">Click me to see the changelog</string>
     <string name="changelog_title" translatable="false">Changelog</string>
     <string name="contributors_title">Contributors</string>
+    <string name="build_section_title">Build Infos</string>
+    <string name="maintenance_section_title">Maintenance</string>
     <string name="default_account_name">User</string>
     <string name="user_tile_category">User Tile Customization</string>
     <string name="user_tile_image_title">User Image</string>

@@ -55,13 +55,13 @@ public class CrystalInfoActivity extends PreferenceActivity
                 {
                     if(i%2==0)
                     {
-                        Intent intent = new Intent(Intent.ACTION_MAIN);
-                        intent.setClassName("android", com.android.internal.app.CrystalEggActivity.class.getName());
-                        try {
-                            startActivity(intent);
-                        } catch (Exception e) {
-                            Log.e("CrystalInfoActivity", "Unable to start activity " + intent.toString());
-                        }
+//                         Intent intent = new Intent(Intent.ACTION_MAIN);
+//                         intent.setClassName("android", com.android.internal.app.CrystalEggActivity.class.getName());
+//                         try {
+//                             startActivity(intent);
+//                         } catch (Exception e) {
+//                             Log.e("CrystalInfoActivity", "Unable to start activity " + intent.toString());
+//                         }
                     }
                     else
                     {
