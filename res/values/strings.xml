@@ -1,18 +1,30 @@
+<!--
+  ~    Copyright 2016 The Crystal Rom Project
+  ~
+  ~    Licensed under the Apache License, Version 2.0 (the "License");
+  ~    you may not use this file except in compliance with the License.
+  ~    You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~    Unless required by applicable law or agreed to in writing, software
+  ~    distributed under the License is distributed on an "AS IS" BASIS,
+  ~    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~    See the License for the specific language governing permissions and
+  ~    limitations under the License.
+  ~
+  -->
+
 <resources>
-
-    <!--
-     Copyright (C) 2016 Crystal Rom
-     Licensed under the Apache License, Version 2.0 (the "License");
-     you may not use this file except in compliance with the License.
-     You may obtain a copy of the License at
-          http://www.apache.org/licenses/LICENSE-2.0
-     Unless required by applicable law or agreed to in writing, software
-     distributed under the License is distributed on an "AS IS" BASIS,
-     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-     See the License for the specific language governing permissions and
-     limitations under the License.
--->
-
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_general">General</string>
+    <string name="nav_display">Display</string>
+    <string name="nav_recents">Recents</string>
+    <string name="nav_statusbar">Status Bar</string>
+    <string name="nav_physical_keys">Physical keys</string>
+    <string name="nav_about_rom">About Crystal Rom</string>
+    <string name="nav_about_developer">About the Developer</string>
     <string name="app_name" translatable="false">CrystalShards</string>
     <string name="updater_title">Updater</string>
     <string name="updater_show_changelog">Click me to see the changelog</string>
@@ -38,4 +50,8 @@
     <string name="default_crystal_branch">Unknown</string>
     <string name="default_crystal_api">Unknown</string>
     <string name="default_crystal_flavour">SHATTERED</string>
+    <string name="recents_fab_title">Floating Action Button for Recents</string>
+    <string name="recents_fab_description">Use FAB instead stock \'clean all\' button for recents</string>
+    <string name="header_title" translatable="false">CrystalShards</string>
+    <string name="header_description" translatable="false">MOD ME.</string>
 </resources>

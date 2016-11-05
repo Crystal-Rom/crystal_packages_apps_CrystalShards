@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~    Copyright 2016 The Crystal Rom Project
+  ~
+  ~    Licensed under the Apache License, Version 2.0 (the "License");
+  ~    you may not use this file except in compliance with the License.
+  ~    You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~    Unless required by applicable law or agreed to in writing, software
+  ~    distributed under the License is distributed on an "AS IS" BASIS,
+  ~    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~    See the License for the specific language governing permissions and
+  ~    limitations under the License.
+  ~
+  -->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_general"
+            android:icon="@drawable/ic_android_white_24dp"
+            android:title="@string/nav_general"/>
+        <item
+            android:id="@+id/nav_display"
+            android:icon="@drawable/ic_brightness_medium_white_24dp"
+            android:title="@string/nav_display"/>
+        <item
+            android:id="@+id/nav_statusbar"
+            android:icon="@drawable/ic_statusbar"
+            android:title="@string/nav_statusbar"/>
+        <item
+            android:id="@+id/nav_recents"
+            android:icon="@drawable/ic_recents"
+            android:title="@string/nav_recents"/>
+        <item
+            android:id="@+id/nav_physical_keys"
+            android:icon="@drawable/ic_physical_keys"
+            android:title="@string/nav_physical_keys"/>
+    </group>
+
+    <item android:title="Other">
+        <menu>
+            <item
+                android:id="@+id/nav_about_rom"
+                android:icon="@drawable/crystal_rom"
+                android:title="@string/nav_about_rom"/>
+            <item
+                android:title="@string/nav_about_developer"
+                android:icon="@drawable/ic_account_circle_white_24dp"
+                android:id="@+id/nav_about_developer"/>
+        </menu>
+    </item>
+
+</menu>

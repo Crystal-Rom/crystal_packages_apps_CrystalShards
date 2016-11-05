@@ -1,4 +1,4 @@
-# Copyright 2016, Crystal Rom
+# Copyright 2016, The Crystal Rom Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,20 +20,22 @@ include $(CLEAR_VARS)
 LOCAL_MODULE_TAGS := optional
 appcompat_dir := ../../../$(SUPPORT_LIBRARY_ROOT)/v7/appcompat/res
 cardview_dir := ../../../$(SUPPORT_LIBRARY_ROOT)/v7/cardview/res
-res_dir := res $(appcompat_dir) $(cardview_dir)
+design_dir := ../../../$(SUPPORT_LIBRARY_ROOT)/design/res
+res_dir := res $(appcompat_dir) $(cardview_dir) $(design_dir)
 
 LOCAL_SRC_FILES := $(call all-java-files-under, src)
 
 LOCAL_STATIC_JAVA_LIBRARIES := \
     android-support-v7-cardview \
     android-support-v7-appcompat \
+    android-support-design \
     android-support-v4 \
     volley
 
 LOCAL_RESOURCE_DIR := $(addprefix $(LOCAL_PATH)/, $(res_dir))
 
 LOCAL_AAPT_FLAGS := --auto-add-overlay
-LOCAL_AAPT_FLAGS += --extra-packages android.support.v7.appcompat:android.support.v7.cardview:android.support.v4.app
+LOCAL_AAPT_FLAGS += --extra-packages android.support.v7.appcompat:android.support.v7.cardview:android.support.v4.app:android.support.design
 
 LOCAL_PACKAGE_NAME := CrystalShards
 

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <!--
   ~    Copyright 2016 The Crystal Rom Project
   ~
@@ -17,8 +16,6 @@
   ~
   -->
 
-<resources>
-    <color name="colorPrimary">#36474F</color>
-    <color name="colorPrimaryDark">#324148</color>
-    <color name="colorAccent">#09b1ef</color>
-</resources>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+</menu>

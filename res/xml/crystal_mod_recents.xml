@@ -17,22 +17,7 @@
   -->
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <PreferenceCategory android:title="@string/user_tile_category">
-        <PreferenceScreen
-            android:key="user_image"
-            android:enabled="true"
-            android:title="@string/user_tile_image_title"
-            android:summary="@string/user_tile_image_summary" />
-        <EditTextPreference
-            android:key="user_name"
-            android:enabled="true"
-            android:title="@string/user_tile_name_title"
-            android:summary="@string/user_tile_name_summary" />
-        <SwitchPreference
-            android:key="replace_with_logo"
-            android:enabled="true"
-            android:title="@string/user_tile_replace_title"
-            android:summary="@string/user_tile_replace_summary" />
-    </PreferenceCategory>
+    <SwitchPreference android:title="@string/recents_fab_title"
+                      android:summary="@string/recents_fab_description"
+                      android:enabled="true"/>
 </PreferenceScreen>
