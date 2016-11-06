@@ -20,13 +20,15 @@ include $(CLEAR_VARS)
 LOCAL_MODULE_TAGS := optional
 appcompat_dir := ../../../$(SUPPORT_LIBRARY_ROOT)/v7/appcompat/res
 cardview_dir := ../../../$(SUPPORT_LIBRARY_ROOT)/v7/cardview/res
+recyclerview_dir := ../../../$(SUPPORT_LIBRARY_ROOT)/v7/recyclerview/res
 design_dir := ../../../$(SUPPORT_LIBRARY_ROOT)/design/res
-res_dir := res $(appcompat_dir) $(cardview_dir) $(design_dir)
+res_dir := res $(appcompat_dir) $(cardview_dir) $(design_dir) $(recyclerview_dir)
 
 LOCAL_SRC_FILES := $(call all-java-files-under, src)
 
 LOCAL_STATIC_JAVA_LIBRARIES := \
     android-support-v7-cardview \
+    android-support-v7-recyclerview \
     android-support-v7-appcompat \
     android-support-design \
     android-support-v4 \
@@ -35,10 +37,12 @@ LOCAL_STATIC_JAVA_LIBRARIES := \
 LOCAL_RESOURCE_DIR := $(addprefix $(LOCAL_PATH)/, $(res_dir))
 
 LOCAL_AAPT_FLAGS := --auto-add-overlay
-LOCAL_AAPT_FLAGS += --extra-packages android.support.v7.appcompat:android.support.v7.cardview:android.support.v4.app:android.support.design
+LOCAL_AAPT_FLAGS += --extra-packages android.support.v7.appcompat:android.support.v7.recyclerview:android.support.v7.cardview:android.support.v4.app:android.support.design
 
 LOCAL_PACKAGE_NAME := CrystalShards
 
 LOCAL_PRIVILEGED_MODULE := true
+
+LOCAL_PROGUARD_FLAG_FILES := proguard.flags
 
 include $(BUILD_PACKAGE)
