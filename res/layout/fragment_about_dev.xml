@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~    Copyright 2016 The Crystal Rom Project
   ~
@@ -16,11 +15,17 @@
   ~
   -->
 
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <ListPreference
-        android:key="screenshot_type"
-        android:title="@string/scrot_type_title"
-        android:summary="@string/scrot_type_description"
-        android:entries="@array/scrot_type"
-        android:entryValues="@array/scrot_type_alias"/>
-</PreferenceScreen>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:padding="16dp"
+             tools:context="it.eskilop.crystalshards.fragments.AboutDevFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="16sp"
+        android:id="@+id/tv_dev_desc"/>
+
+</FrameLayout>

@@ -50,4 +50,6 @@
     <string name="user_tile_replace_summary">Sostituisci con il logo di Crystal Rom</string>
     <string name="recents_fab_title">Bottone Circolare per i recenti</string>
     <string name="recents_fab_description">Usa il Bottone circolare invece del bottone \'cancella tutto\' stock</string>
+    <string name="scrot_type_title">Tipo screenshot</string>
+    <string name="scrot_type_description">Usa lo screenshot parziale o quello di default</string>
 </resources>

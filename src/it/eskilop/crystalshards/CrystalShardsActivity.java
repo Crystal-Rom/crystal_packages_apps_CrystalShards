@@ -29,6 +29,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import it.eskilop.crystalshards.fragments.AboutDevFragment;
+import it.eskilop.crystalshards.fragments.AboutRomFragment;
 import it.eskilop.crystalshards.fragments.DisplayModsFragment;
 import it.eskilop.crystalshards.fragments.GeneralModsFragment;
 import it.eskilop.crystalshards.fragments.PhysicalKeysModsFragment;
@@ -125,12 +127,12 @@ public class CrystalShardsActivity extends AppCompatActivity implements Navigati
               break;
             case R.id.nav_about_rom:
               getFragmentManager().beginTransaction()
-                      .replace(R.id.container, GeneralModsFragment.newInstance())
+                      .replace(R.id.container, AboutRomFragment.newInstance())
                       .commit();
               break;
             case R.id.nav_about_developer:
               getFragmentManager().beginTransaction()
-                      .replace(R.id.container, GeneralModsFragment.newInstance())
+                      .replace(R.id.container, AboutDevFragment.newInstance())
                       .commit();
               break;
           }

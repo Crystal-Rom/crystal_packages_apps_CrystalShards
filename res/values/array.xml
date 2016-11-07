@@ -16,11 +16,13 @@
   ~
   -->
 
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <ListPreference
-        android:key="screenshot_type"
-        android:title="@string/scrot_type_title"
-        android:summary="@string/scrot_type_description"
-        android:entries="@array/scrot_type"
-        android:entryValues="@array/scrot_type_alias"/>
-</PreferenceScreen>
+<resources>
+    <string-array name="scrot_type">
+        <item>System Default</item>
+        <item>Partial Screenshot</item>
+    </string-array>
+    <string-array name="scrot_type_alias">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+</resources>
