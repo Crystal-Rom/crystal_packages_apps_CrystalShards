@@ -18,17 +18,20 @@
 package it.eskilop.crystalshards.fragments;
 
 
-import android.app.Fragment;
+import android.content.ContentResolver;
 import android.os.Bundle;
+import android.preference.ListPreference;
+import android.preference.Preference;
 import android.preference.PreferenceFragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.provider.Settings;
+import android.util.Log;
 
 import it.eskilop.crystalshards.R;
 
-public class DisplayModsFragment extends PreferenceFragment
+public class DisplayModsFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener
   {
+
+    private static final String KEY_SCREENSHOT_TYPE = "screenshot_type";
 
     public DisplayModsFragment()
       {
@@ -45,5 +48,33 @@ public class DisplayModsFragment extends PreferenceFragment
       {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.crystal_mod_display);
+
+        ListPreference scrot_preference = (ListPreference) findPreference(KEY_SCREENSHOT_TYPE);
+        scrot_preference.setOnPreferenceChangeListener(this);
+      }
+
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object o)
+      {
+        ContentResolver resolver = getActivity().getContentResolver();
+
+        // Let's check what preference is it
+        switch (preference.getKey())
+          {
+            case KEY_SCREENSHOT_TYPE:
+              Settings.System.putString(resolver, Settings.System.CRYSTAL_DISPLAY_SCREENSHOT_TYPE, (String) o);
+              switch((String) o)
+                {
+                  case "1":
+                    preference.setSummary(getResources().getString(R.string.scrot_type_default_summary));
+                    break;
+                  case "2":
+                    preference.setSummary(getResources().getString(R.string.scrot_type_partial_summary));
+                    break;
+                }
+              Log.e("CS", String.valueOf(o));
+              break;
+          }
+        return false;
       }
   }

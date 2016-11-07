@@ -61,4 +61,6 @@
     <string name="about_dev_desc" translatable="false"><b>About the developer:</b>\n\n Okay, first of all, before you start asking \'Eskilop\' is a totally invented name, not based on anything. I was an android enthusiast, I started my \'developer\' path making some applications, not that useful, but.. I was (and am) a modder, I started modding with my first phone: Samsung Galaxy Next Turbo (GT-S5570I) not my choice, in fact my parents gifted it to me, there weren\'t so much roms (pretty obvious) but then androidarmv6 team made a cm11 port for it and in that precise moment I started to \'study\' what exactly they done to have that cm-11-stuff.zip that made my phone so \'new\'. I started documenting how to build the Cyanogenmod for the GT-S5570I and i made it, after one week I was able to install my compiled version of the cm11. But I had no intenction to stop there, because I am very curious, so I started making some little (very little and irrilevant) changes to the easter-egg.</string>
     <string name="scrot_type_title">Screenshot type</string>
     <string name="scrot_type_description">Use either partial or system default screenshot</string>
+    <string name="scrot_type_default_summary">System Default</string>
+    <string name="scrot_type_partial_summary">Partial Screenshot</string>
 </resources>

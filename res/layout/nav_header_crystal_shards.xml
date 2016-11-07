@@ -51,14 +51,14 @@
             android:layout_width="264dp"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/nav_header_vertical_spacing"
-            android:text="CrystalShards"
+            android:text="@string/header_title"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="MOD ME."
+            android:text="@string/header_description"
             android:layout_weight="14.67"/>
     </LinearLayout>
 

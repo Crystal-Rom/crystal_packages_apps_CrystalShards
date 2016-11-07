@@ -52,4 +52,6 @@
     <string name="recents_fab_description">Usa il Bottone circolare invece del bottone \'cancella tutto\' stock</string>
     <string name="scrot_type_title">Tipo screenshot</string>
     <string name="scrot_type_description">Usa lo screenshot parziale o quello di default</string>
+    <string name="scrot_type_default_summary">Default di sistema</string>
+    <string name="scrot_type_partial_summary">Screenshot parziale</string>
 </resources>
