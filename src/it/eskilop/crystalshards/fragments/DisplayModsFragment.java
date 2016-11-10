@@ -31,6 +31,7 @@ public class DisplayModsFragment extends PreferenceFragment implements Preferenc
   {
 
     private static final String KEY_SCREENSHOT_TYPE = "screenshot_type";
+    static boolean can_overwrite = false;
 
     public DisplayModsFragment()
       {
@@ -48,18 +49,20 @@ public class DisplayModsFragment extends PreferenceFragment implements Preferenc
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.crystal_mod_display);
 
-        ListPreference scrot_preference = (ListPreference) findPreference(KEY_SCREENSHOT_TYPE);
-        scrot_preference.setOnPreferenceChangeListener(this);
+        findPreference(KEY_SCREENSHOT_TYPE).setOnPreferenceChangeListener(this);
 
-        // Set summaries and values to the ones picked by the user
-        switch (Settings.System.getString(getActivity().getContentResolver(), Settings.System.CRYSTAL_DISPLAY_SCREENSHOT_TYPE))
+        if (can_overwrite)
           {
-            case "1":
-              scrot_preference.setSummary(getResources().getString(R.string.scrot_type_default_summary));
-              break;
-            case "2":
-              scrot_preference.setSummary(getResources().getString(R.string.scrot_type_partial_summary));
-              break;
+            // Set summaries and values to the ones picked by the user
+            switch (Settings.System.getString(getActivity().getContentResolver(), Settings.System.CRYSTAL_DISPLAY_SCREENSHOT_TYPE))
+              {
+                case "1":
+                  scrot_preference.setSummary(getResources().getString(R.string.scrot_type_default_summary));
+                  break;
+                case "2":
+                  scrot_preference.setSummary(getResources().getString(R.string.scrot_type_partial_summary));
+                  break;
+              }
           }
       }
 
@@ -82,6 +85,7 @@ public class DisplayModsFragment extends PreferenceFragment implements Preferenc
                     preference.setSummary(getResources().getString(R.string.scrot_type_partial_summary));
                     break;
                 }
+              can_overwrite = true;
               break;
           }
         return false;
