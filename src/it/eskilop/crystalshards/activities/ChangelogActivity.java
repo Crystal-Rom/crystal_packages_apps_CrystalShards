@@ -13,8 +13,8 @@ package it.eskilop.crystalshards.activities;
      limitations under the License.
 */
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.method.ScrollingMovementMethod;
 import android.widget.TextView;
@@ -27,23 +27,26 @@ import java.net.URL;
 import it.eskilop.crystalshards.R;
 
 
-public class ChangelogActivity extends AppCompatActivity {
+public class ChangelogActivity extends AppCompatActivity
+  {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+      {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_changelog);
         final TextView text = (TextView) findViewById(R.id.changelog_text);
         text.setMovementMethod(new ScrollingMovementMethod());
 
         new Thread(new Runnable()
-        {
+          {
             @Override
             public void run()
-            {
+              {
 
                 URL u = null;
-                try {
+                try
+                  {
                     u = new URL("http://www.crystalrom.eskilop.it/ROM/CHANGELOG.txt");
                     HttpURLConnection c = (HttpURLConnection) u.openConnection();
                     c.setRequestMethod("GET");
@@ -55,20 +58,22 @@ public class ChangelogActivity extends AppCompatActivity {
                     bo.write(buffer); // Write Into Buffer.
 
                     ChangelogActivity.this.runOnUiThread(new Runnable()
-                    {
+                      {
                         @Override
-                        public void run() {
+                        public void run()
+                          {
                             text.setText(Html.fromHtml(bo.toString().trim()));
-                        }
-                    });
+                          }
+                      });
 
                     bo.close();
 
-                }catch (Exception e)
-                {
+                  }
+                catch (Exception e)
+                  {
 
-                }
-            }
-        }).start();
-    }
-}
+                  }
+              }
+          }).start();
+      }
+  }

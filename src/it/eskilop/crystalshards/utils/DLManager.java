@@ -23,15 +23,15 @@ import android.os.Environment;
  * Created by eskilop on 12/11/15.
  */
 public class DLManager
-{
+  {
 
     public DLManager()
-    {
+      {
 
-    }
+      }
 
     public void download(String url, Context c, String t, String d, String name)
-    {
+      {
 
         final Context mContext = c;
         final String mName = name;
@@ -41,16 +41,17 @@ public class DLManager
         request.setTitle(t);
 
         // in order for this if to run, you must use the android 3.2 to compile your app
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+          {
             request.allowScanningByMediaScanner();
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-        }
+          }
         request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, name);
 
         // get download service and enqueue file
         DownloadManager manager = (DownloadManager) c.getSystemService(Context.DOWNLOAD_SERVICE);
         manager.enqueue(request);
 
-    }
+      }
 
-}
+  }

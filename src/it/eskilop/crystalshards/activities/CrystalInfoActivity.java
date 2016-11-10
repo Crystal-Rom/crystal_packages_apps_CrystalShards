@@ -15,19 +15,16 @@ package it.eskilop.crystalshards.activities;
 
 import android.content.Intent;
 import android.os.Build;
-import android.os.SystemClock;
+import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
-import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.preference.PreferenceScreen;
 import android.util.Log;
 import android.widget.Toast;
 
 import it.eskilop.crystalshards.R;
+
 public class CrystalInfoActivity extends PreferenceActivity
-{
-/*
+  {
     
     
     private static final String KEY_CRYSTAL_VERSION = "crystal_version";
@@ -47,7 +44,7 @@ public class CrystalInfoActivity extends PreferenceActivity
         
         findPreference(KEY_CRYSTAL_VERSION).setSummary(Build.CRYSTAL.VERSION);
         findPreference(KEY_CRYSTAL_VERSION).setEnabled(true);
-        findPreference(KEY_CRYSTAL_VERSION).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() 
+        findPreference(KEY_CRYSTAL_VERSION).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener()
             {
 
                 @Override
@@ -56,7 +53,7 @@ public class CrystalInfoActivity extends PreferenceActivity
                     if(i%2==0)
                     {
                          Intent intent = new Intent(Intent.ACTION_MAIN);
-                         intent.setClassName("android", com.android.internal.app.CrystalEggActivity.class.getName());
+                         //intent.setClassName("android", com.android.internal.app.CrystalEggActivity.class.getName());
                          try {
                              startActivity(intent);
                          } catch (Exception e) {
@@ -76,12 +73,12 @@ public class CrystalInfoActivity extends PreferenceActivity
         findPreference(KEY_CRYSTAL_CODENAME).setEnabled(true);
         findPreference(KEY_CRYSTAL_BRANCH).setSummary(Build.CRYSTAL.BRANCH);
         findPreference(KEY_CRYSTAL_BRANCH).setEnabled(true);
-        findPreference(KEY_CRYSTAL_API).setSummary(Build.CRYSTAL.API);
+        findPreference(KEY_CRYSTAL_API).setSummary(Build.CRYSTAL.API_LEVEL);
         findPreference(KEY_CRYSTAL_API).setEnabled(true);
         findPreference(KEY_CRYSTAL_FLAVOUR).setSummary(Build.CRYSTAL.FLAVOUR);
         findPreference(KEY_CRYSTAL_FLAVOUR).setEnabled(true);
         
         
-    }*/
+    }
 
-}
+  }

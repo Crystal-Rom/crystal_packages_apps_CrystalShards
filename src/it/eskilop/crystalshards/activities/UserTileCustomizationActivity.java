@@ -29,143 +29,145 @@ import android.preference.SwitchPreference;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 
-import it.eskilop.crystalshards.R;
-
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
+import it.eskilop.crystalshards.R;
+
 public class UserTileCustomizationActivity extends PreferenceActivity
-{
-
-  private static final int REQUEST_CHOOSE_IMAGE = 1;
-  private static final String USER_IMAGE_KEY = "user_image";
-  private static final String USER_NAME_KEY = "user_name";
-  private static final String REPLACE_WITH_LOGO_KEY = "replace_with_logo";
-  private PreferenceScreen user_image;
-  private EditTextPreference user_name;
-  private SwitchPreference replace_icon;
-  private SharedPreferences crystalprefs;
-
-  @Override
-  protected void onCreate(Bundle savedInstanceState)
   {
-    super.onCreate(savedInstanceState);
-    addPreferencesFromResource(R.xml.user_tile_prefs);
 
-    crystalprefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+    private static final int REQUEST_CHOOSE_IMAGE = 1;
+    private static final String USER_IMAGE_KEY = "user_image";
+    private static final String USER_NAME_KEY = "user_name";
+    private static final String REPLACE_WITH_LOGO_KEY = "replace_with_logo";
+    private PreferenceScreen user_image;
+    private EditTextPreference user_name;
+    private SwitchPreference replace_icon;
+    private SharedPreferences crystalprefs;
 
-    user_image = (PreferenceScreen) findPreference(USER_IMAGE_KEY);
-    user_name = (EditTextPreference) findPreference(USER_NAME_KEY);
-    replace_icon = (SwitchPreference) findPreference(REPLACE_WITH_LOGO_KEY);
-
-    user_image.setSummary(crystalprefs.getString("user_image_path", "Scegli un'immagine"));
-    user_name.setSummary(crystalprefs.getString("user_name_value", "Scegli un nome"));
-
-    user_image.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener()
-    {
-      @Override
-      public boolean onPreferenceClick(Preference preference)
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
       {
-        startActivityForResult(Intent.createChooser(new Intent(Intent.ACTION_GET_CONTENT).setType("image/*"), "Choose an image"), REQUEST_CHOOSE_IMAGE);
+        super.onCreate(savedInstanceState);
+        addPreferencesFromResource(R.xml.user_tile_prefs);
+
+        crystalprefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+        user_image = (PreferenceScreen) findPreference(USER_IMAGE_KEY);
+        user_name = (EditTextPreference) findPreference(USER_NAME_KEY);
+        replace_icon = (SwitchPreference) findPreference(REPLACE_WITH_LOGO_KEY);
+
         user_image.setSummary(crystalprefs.getString("user_image_path", "Scegli un'immagine"));
-        return false;
-      }
-    });
-
-    user_name.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener()
-    {
-      @Override
-      public boolean onPreferenceChange(Preference preference, Object o)
-      {
-        crystalprefs.edit().putString("user_name_value", (String) o).apply();
         user_name.setSummary(crystalprefs.getString("user_name_value", "Scegli un nome"));
-        return false;
-      }
-    });
 
-    replace_icon.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener()
-    {
-      @Override
-      public boolean onPreferenceChange(Preference preference, Object o)
-      {
-        crystalprefs.edit().putBoolean("user_replace_icon", (Boolean) o).apply();
-        replace_icon.setChecked((Boolean) o);
-        if((Boolean) o)
-        {
-          replace_icon.setSummary("L'immagine è stata cambiata con il logo di @crystalrom");
-        }
-        else
-        {
-          replace_icon.setSummary("L'immagine non è stata cambiata con il logo di @crystalrom");
-        }
-        return false;
-      }
-    });
-  }
+        user_image.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener()
+          {
+            @Override
+            public boolean onPreferenceClick(Preference preference)
+              {
+                startActivityForResult(Intent.createChooser(new Intent(Intent.ACTION_GET_CONTENT).setType("image/*"), "Choose an image"), REQUEST_CHOOSE_IMAGE);
+                user_image.setSummary(crystalprefs.getString("user_image_path", "Scegli un'immagine"));
+                return false;
+              }
+          });
 
-  @Override
-  protected void onActivityResult(int requestCode, int resultCode, Intent data)
-  {
-    super.onActivityResult(requestCode, resultCode, data);
-    if (requestCode == REQUEST_CHOOSE_IMAGE)
-    {
-      if (resultCode == RESULT_OK)
+        user_name.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener()
+          {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object o)
+              {
+                crystalprefs.edit().putString("user_name_value", (String) o).apply();
+                user_name.setSummary(crystalprefs.getString("user_name_value", "Scegli un nome"));
+                return false;
+              }
+          });
+
+        replace_icon.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener()
+          {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object o)
+              {
+                crystalprefs.edit().putBoolean("user_replace_icon", (Boolean) o).apply();
+                replace_icon.setChecked((Boolean) o);
+                if ((Boolean) o)
+                  {
+                    replace_icon.setSummary("L'immagine è stata cambiata con il logo di @crystalrom");
+                  } else
+                  {
+                    replace_icon.setSummary("L'immagine non è stata cambiata con il logo di @crystalrom");
+                  }
+                return false;
+              }
+          });
+      }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
       {
-        String path;
-        Uri selectedImage = data.getData();
-        path = getPath(selectedImage);
-        if (path != null)
-          crystalprefs.edit().putString("user_image_path", path).apply();
-        else
-        {
-          try
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CHOOSE_IMAGE)
           {
-            InputStream is = getContentResolver().openInputStream(selectedImage);
-            path = selectedImage.getPath();
-          } catch (FileNotFoundException e)
-          {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            if (resultCode == RESULT_OK)
+              {
+                String path;
+                Uri selectedImage = data.getData();
+                path = getPath(selectedImage);
+                if (path != null)
+                  {
+                    crystalprefs.edit().putString("user_image_path", path).apply();
+                  } else
+                  {
+                    try
+                      {
+                        InputStream is = getContentResolver().openInputStream(selectedImage);
+                        path = selectedImage.getPath();
+                      }
+                    catch (FileNotFoundException e)
+                      {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                      }
+                  }
+              }
           }
-        }
       }
-    }
+
+    @SuppressLint("NewApi")
+    private String getPath(Uri uri)
+      {
+        if (uri == null)
+          {
+            return null;
+          }
+
+        String[] projection = {MediaStore.Images.Media.DATA};
+
+        Cursor cursor;
+        if (Build.VERSION.SDK_INT > 19)
+          {
+            String wholeID = DocumentsContract.getDocumentId(uri);
+            String id = wholeID.split(":")[1];
+            String sel = MediaStore.Images.Media._ID + "=?";
+
+            cursor = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                    projection, sel, new String[]{id}, null);
+          } else
+          {
+            cursor = getContentResolver().query(uri, projection, null, null, null);
+          }
+        String path = null;
+        try
+          {
+            int column_index = cursor.getColumnIndex(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            path = cursor.getString(column_index).toString();
+            cursor.close();
+          }
+        catch (NullPointerException e)
+          {
+
+          }
+        return path;
+      }
   }
-
-  @SuppressLint("NewApi")
-  private String getPath(Uri uri)
-  {
-    if (uri == null)
-    {
-      return null;
-    }
-
-    String[] projection = {MediaStore.Images.Media.DATA};
-
-    Cursor cursor;
-    if (Build.VERSION.SDK_INT > 19)
-    {
-      String wholeID = DocumentsContract.getDocumentId(uri);
-      String id = wholeID.split(":")[1];
-      String sel = MediaStore.Images.Media._ID + "=?";
-
-      cursor = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-              projection, sel, new String[]{id}, null);
-    } else
-    {
-      cursor = getContentResolver().query(uri, projection, null, null, null);
-    }
-    String path = null;
-    try
-    {
-      int column_index = cursor.getColumnIndex(MediaStore.Images.Media.DATA);
-      cursor.moveToFirst();
-      path = cursor.getString(column_index).toString();
-      cursor.close();
-    } catch (NullPointerException e)
-    {
-
-    }
-    return path;
-  }
-}

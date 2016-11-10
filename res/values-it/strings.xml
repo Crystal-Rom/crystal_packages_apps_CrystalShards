@@ -54,4 +54,21 @@
     <string name="scrot_type_description">Usa lo screenshot parziale o quello di default</string>
     <string name="scrot_type_default_summary">Default di sistema</string>
     <string name="scrot_type_partial_summary">Screenshot parziale</string>
+    <string name="volume_switch_track_title">Cambia traccia</string>
+    <string name="volume_switch_track_summary">Cambia traccia con una pressione prolungata sui tasti volume a schermo spento</string>
+    <string name="nav_miscellaneous">Miscellaneo</string>
+    <string name="category_links">Link utili</string>
+    <string name="links_mainsite_summary">Guarda il sito ufficiale di Crystal Rom</string>
+    <string name="links_mainsite_title">Sito Principale</string>
+    <string name="links_telegramchannel_summary">Ricevi le ultimissime novità in pochi secondi con il canale telegram ufficiale</string>
+    <string name="links_telegramchannel_title">Canale Telegram Crystal Rom</string>
+    <string name="links_telegramgroup_summary">Discuti con altri seguaci di Crystal Rom nel gruppo di discussione ufficiale</string>
+    <string name="links_telegramgroup_title">Gruppo Di Discussione Crystal Rom</string>
+    <string name="links_wiki_summary">Pagina Wiki dedicata a Crystal Rom</string>
+    <string name="links_wiki_title">Wiki Ufficiale Crystal Rom</string>
+    <string name="llinks_gpluscommunity_summary">Scambia idee e trova altri utenti di Crystal Rom</string>
+    <string name="misc_infos">Informazioni generali</string>
+    <string name="misc_infos_summary">Acquamarine 1.0.0 (alpha)</string>
+    <string name="misc_report">Segnala un Problema</string>
+    <string name="misc_report_summary">Segnala un problema allo sviluppatore</string>
 </resources>

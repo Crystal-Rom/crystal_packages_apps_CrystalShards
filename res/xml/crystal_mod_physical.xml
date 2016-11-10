@@ -17,5 +17,9 @@
   -->
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-
+    <SwitchPreference
+        android:key="volume_switch_track"
+        android:title="@string/volume_switch_track_title"
+        android:summary="@string/volume_switch_track_summary"
+        android:enabled="true"/>
 </PreferenceScreen>

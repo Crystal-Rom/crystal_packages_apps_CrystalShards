@@ -24,7 +24,6 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.provider.Settings;
-import android.util.Log;
 
 import it.eskilop.crystalshards.R;
 
@@ -51,6 +50,17 @@ public class DisplayModsFragment extends PreferenceFragment implements Preferenc
 
         ListPreference scrot_preference = (ListPreference) findPreference(KEY_SCREENSHOT_TYPE);
         scrot_preference.setOnPreferenceChangeListener(this);
+
+        // Set summaries and values to the ones picked by the user
+        switch (Settings.System.getString(getActivity().getContentResolver(), Settings.System.CRYSTAL_DISPLAY_SCREENSHOT_TYPE))
+          {
+            case "1":
+              scrot_preference.setSummary(getResources().getString(R.string.scrot_type_default_summary));
+              break;
+            case "2":
+              scrot_preference.setSummary(getResources().getString(R.string.scrot_type_partial_summary));
+              break;
+          }
       }
 
     @Override
@@ -62,8 +72,8 @@ public class DisplayModsFragment extends PreferenceFragment implements Preferenc
         switch (preference.getKey())
           {
             case KEY_SCREENSHOT_TYPE:
-              Settings.System.putString(resolver, Settings.System.CRYSTAL_DISPLAY_SCREENSHOT_TYPE, (String) o);
-              switch((String) o)
+             // Settings.System.putString(resolver, Settings.System.CRYSTAL_DISPLAY_SCREENSHOT_TYPE, (String) o);
+              switch ((String) o)
                 {
                   case "1":
                     preference.setSummary(getResources().getString(R.string.scrot_type_default_summary));
@@ -72,7 +82,6 @@ public class DisplayModsFragment extends PreferenceFragment implements Preferenc
                     preference.setSummary(getResources().getString(R.string.scrot_type_partial_summary));
                     break;
                 }
-              Log.e("CS", String.valueOf(o));
               break;
           }
         return false;

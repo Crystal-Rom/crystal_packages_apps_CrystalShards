@@ -17,9 +17,7 @@
 package it.eskilop.crystalshards;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -27,12 +25,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import it.eskilop.crystalshards.fragments.AboutDevFragment;
 import it.eskilop.crystalshards.fragments.AboutRomFragment;
 import it.eskilop.crystalshards.fragments.DisplayModsFragment;
 import it.eskilop.crystalshards.fragments.GeneralModsFragment;
+import it.eskilop.crystalshards.fragments.MiscellaneousFragment;
 import it.eskilop.crystalshards.fragments.PhysicalKeysModsFragment;
 import it.eskilop.crystalshards.fragments.RecentsModsFragment;
 import it.eskilop.crystalshards.fragments.StatusbarModsFragment;
@@ -45,6 +43,14 @@ public class CrystalShardsActivity extends AppCompatActivity implements Navigati
       {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crystal_shards);
+
+        if (savedInstanceState == null)
+          {
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.container, MiscellaneousFragment.newInstance())
+                    .commit();
+          }
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -123,6 +129,11 @@ public class CrystalShardsActivity extends AppCompatActivity implements Navigati
             case R.id.nav_physical_keys:
               getFragmentManager().beginTransaction()
                       .replace(R.id.container, PhysicalKeysModsFragment.newInstance())
+                      .commit();
+              break;
+            case R.id.nav_miscellaneous:
+              getFragmentManager().beginTransaction()
+                      .replace(R.id.container, MiscellaneousFragment.newInstance())
                       .commit();
               break;
             case R.id.nav_about_rom:

@@ -18,18 +18,20 @@
 package it.eskilop.crystalshards.fragments;
 
 
-import android.app.Fragment;
+import android.content.ContentResolver;
 import android.os.Bundle;
+import android.preference.Preference;
 import android.preference.PreferenceFragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.preference.SwitchPreference;
+import android.provider.Settings;
 
 import it.eskilop.crystalshards.R;
 
 
-public class PhysicalKeysModsFragment extends PreferenceFragment
+public class PhysicalKeysModsFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener
   {
+
+    private static final String KEY_VOLUME_SWITCH_TRACK = "volume_switch_track";
 
     public PhysicalKeysModsFragment()
       {
@@ -46,5 +48,24 @@ public class PhysicalKeysModsFragment extends PreferenceFragment
       {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.crystal_mod_physical);
+
+        SwitchPreference volume_switch_track = (SwitchPreference) findPreference(KEY_VOLUME_SWITCH_TRACK);
+        volume_switch_track.setOnPreferenceChangeListener(this);
+
+      }
+
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object o)
+      {
+        ContentResolver resolver = getActivity().getContentResolver();
+
+        // Let's check what preference is it
+        switch (preference.getKey())
+          {
+            case KEY_VOLUME_SWITCH_TRACK:
+              //Settings.System.putString(resolver, Settings.System.CRYSTAL_PHYSICAL_VOLUME_SWITCH_TRACK, (int) o);
+              break;
+          }
+        return false;
       }
   }

@@ -22,55 +22,55 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.util.List;
+
 import it.eskilop.crystalshards.R;
 import it.eskilop.crystalshards.utils.DLManager;
-
-import java.util.List;
 
 /**
  * Created by eskilop on 12/06/16.
  */
 public class CustomAdapter extends ArrayAdapter
-{
-  private String base_url = "http://www.eskilop.it/CRYSTALROM/ROM/BUILDS/";
-
-
-  private Context ctx;
-  private View row = null;
-  private int mResource;
-  private List<String> mObjects;
-
-  public CustomAdapter(Context context, int resource, List<String> objects)
   {
-    super(context, resource, objects);
-    ctx = context;
-    mResource = resource;
-    mObjects = objects;
-  }
+    private String base_url = "http://www.eskilop.it/CRYSTALROM/ROM/BUILDS/";
 
-  @Override
-  public View getView(int position, View convertView, ViewGroup parent)
-  {
 
-    LayoutInflater inflater = LayoutInflater.from(ctx);
-    if (!mObjects.get(position).trim().equals(""))
-    {
-      row = inflater.inflate(mResource, parent, false);
-      final TextView build_name = (TextView) row.findViewById(R.id.build_name);
-      build_name.setText(mObjects.get(position));
-      ImageButton download = (ImageButton) row.findViewById(R.id.download_build);
-      download.setOnClickListener(new View.OnClickListener()
+    private Context ctx;
+    private View row = null;
+    private int mResource;
+    private List<String> mObjects;
+
+    public CustomAdapter(Context context, int resource, List<String> objects)
       {
-        @Override
-        public void onClick(View view)
-        {
-          new DLManager().download(base_url + Build.DEVICE + "/" + "stable/" + build_name.getText().toString(), ctx, "Crystal Updater:", "Scaricando: " + build_name.getText().toString(), build_name.getText().toString());
-        }
-      });
-    } else
-    {
+        super(context, resource, objects);
+        ctx = context;
+        mResource = resource;
+        mObjects = objects;
+      }
 
-    }
-    return row;
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent)
+      {
+
+        LayoutInflater inflater = LayoutInflater.from(ctx);
+        if (!mObjects.get(position).trim().equals(""))
+          {
+            row = inflater.inflate(mResource, parent, false);
+            final TextView build_name = (TextView) row.findViewById(R.id.build_name);
+            build_name.setText(mObjects.get(position));
+            ImageButton download = (ImageButton) row.findViewById(R.id.download_build);
+            download.setOnClickListener(new View.OnClickListener()
+              {
+                @Override
+                public void onClick(View view)
+                  {
+                    new DLManager().download(base_url + Build.DEVICE + "/" + "stable/" + build_name.getText().toString(), ctx, "Crystal Updater:", "Scaricando: " + build_name.getText().toString(), build_name.getText().toString());
+                  }
+              });
+          } else
+          {
+
+          }
+        return row;
+      }
   }
-}

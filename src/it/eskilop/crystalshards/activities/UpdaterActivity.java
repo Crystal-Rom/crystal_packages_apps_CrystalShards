@@ -26,66 +26,66 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import it.eskilop.crystalshards.R;
-import it.eskilop.crystalshards.adapters.CustomAdapter;
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import it.eskilop.crystalshards.R;
+import it.eskilop.crystalshards.adapters.CustomAdapter;
+
 public class UpdaterActivity extends AppCompatActivity
-{
-  static String[] builds;
-  private String TAG = "Crystal Updater";
-
-  @Override
-  protected void onCreate(Bundle savedInstanceState)
   {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_updater);
+    static String[] builds;
+    private String TAG = "Crystal Updater";
 
-    final ListView rom_builds = (ListView) findViewById(R.id.rom_builds);
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+      {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_updater);
 
-    // Instantiate the RequestQueue.
-    RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-    String url = "http://www.crystalrom.eskilop.it/ROM/BUILDS/lister.php";
+        final ListView rom_builds = (ListView) findViewById(R.id.rom_builds);
 
-    // Request a string response from the provided URL.
-    StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-            new Response.Listener<String>()
-            {
-              @Override
-              public void onResponse(String response)
-              {
-                builds = response.split(";");
-                for (int i = 0; i < builds.length; i++)
-                {
-                  if (builds[i].trim().equals(""))
+        // Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        String url = "http://www.crystalrom.eskilop.it/ROM/BUILDS/lister.php";
+
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>()
                   {
-                  }
-                }
-                rom_builds.setAdapter(new CustomAdapter(getApplicationContext(), R.layout.custom_row, Arrays.asList(builds)));
+                    @Override
+                    public void onResponse(String response)
+                      {
+                        builds = response.split(";");
+                        for (int i = 0; i < builds.length; i++)
+                          {
+                            if (builds[i].trim().equals(""))
+                              {
+                              }
+                          }
+                        rom_builds.setAdapter(new CustomAdapter(getApplicationContext(), R.layout.custom_row, Arrays.asList(builds)));
+                      }
+                  }, new Response.ErrorListener()
+          {
+            @Override
+            public void onErrorResponse(VolleyError error)
+              {
+                Log.e(TAG, "onErrorResponse: There's been an error");
               }
-            }, new Response.ErrorListener()
-    {
-      @Override
-      public void onErrorResponse(VolleyError error)
-      {
-        Log.e(TAG, "onErrorResponse: There's been an error");
-      }
-    })
-    {
-      @Override
-      protected Map<String, String> getParams()
-      {
-        Map<String, String> params = new HashMap<>();
-        params.put("device", Build.DEVICE);
-        params.put("channel", "stable");
+          })
+          {
+            @Override
+            protected Map<String, String> getParams()
+              {
+                Map<String, String> params = new HashMap<>();
+                params.put("device", Build.DEVICE);
+                params.put("channel", "stable");
 
-        return params;
+                return params;
+              }
+          };
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
       }
-    };
-    // Add the request to the RequestQueue.
-    queue.add(stringRequest);
   }
-}

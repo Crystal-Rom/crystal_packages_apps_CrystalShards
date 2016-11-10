@@ -22,10 +22,10 @@ import android.preference.PreferenceManager;
 import android.service.quicksettings.TileService;
 import android.support.annotation.RequiresApi;
 
+import java.util.Objects;
+
 import it.eskilop.crystalshards.R;
 import it.eskilop.crystalshards.activities.UserTileCustomizationActivity;
-
-import java.util.Objects;
 
 /**
  * Created by eskilop on 22/09/16.
@@ -33,58 +33,58 @@ import java.util.Objects;
 
 @RequiresApi(api = Build.VERSION_CODES.N)
 public class UserTile extends TileService
-{
-  SharedPreferences crystalprefs;
-
-  @Override
-  public void onDestroy()
   {
-    super.onDestroy();
-  }
+    SharedPreferences crystalprefs;
 
-  @Override
-  public void onTileAdded()
-  {
-    super.onTileAdded();
-  }
+    @Override
+    public void onDestroy()
+      {
+        super.onDestroy();
+      }
 
-  @Override
-  public void onTileRemoved()
-  {
-    super.onTileRemoved();
-  }
+    @Override
+    public void onTileAdded()
+      {
+        super.onTileAdded();
+      }
 
-  @Override
-  public void onStartListening()
-  {
-    super.onStartListening();
-    crystalprefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-    getQsTile().setLabel(crystalprefs.getString("user_name_value", "Proprietario"));
-    if (!Objects.equals(crystalprefs.getString("user_image_path", ""), ""))
-    {
-      getQsTile().setIcon(Icon.createWithBitmap(BitmapFactory.decodeFile(crystalprefs.getString("user_image_path", ""))));
-    }
-    if (crystalprefs.getBoolean("user_replace_icon", false))
-    {
-      getQsTile().setIcon(Icon.createWithBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.crystal_rom)));
-    } else
-    {
-      getQsTile().setIcon(Icon.createWithBitmap(BitmapFactory.decodeResource(getResources()
-              , R.drawable.ic_account_circle_white_48dp)));
-    }
-    getQsTile().updateTile();
-  }
+    @Override
+    public void onTileRemoved()
+      {
+        super.onTileRemoved();
+      }
 
-  @Override
-  public void onStopListening()
-  {
-    super.onStopListening();
-  }
+    @Override
+    public void onStartListening()
+      {
+        super.onStartListening();
+        crystalprefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        getQsTile().setLabel(crystalprefs.getString("user_name_value", "Proprietario"));
+        if (!Objects.equals(crystalprefs.getString("user_image_path", ""), ""))
+          {
+            getQsTile().setIcon(Icon.createWithBitmap(BitmapFactory.decodeFile(crystalprefs.getString("user_image_path", ""))));
+          }
+        if (crystalprefs.getBoolean("user_replace_icon", false))
+          {
+            getQsTile().setIcon(Icon.createWithBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.crystal_rom)));
+          } else
+          {
+            getQsTile().setIcon(Icon.createWithBitmap(BitmapFactory.decodeResource(getResources()
+                    , R.drawable.ic_account_circle_white_48dp)));
+          }
+        getQsTile().updateTile();
+      }
 
-  @Override
-  public void onClick()
-  {
-    super.onClick();
-    startActivity(new Intent(UserTile.this, UserTileCustomizationActivity.class));
+    @Override
+    public void onStopListening()
+      {
+        super.onStopListening();
+      }
+
+    @Override
+    public void onClick()
+      {
+        super.onClick();
+        startActivity(new Intent(UserTile.this, UserTileCustomizationActivity.class));
+      }
   }
-}
