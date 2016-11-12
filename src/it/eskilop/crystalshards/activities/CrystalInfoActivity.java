@@ -25,50 +25,52 @@ import it.eskilop.crystalshards.R;
 
 public class CrystalInfoActivity extends PreferenceActivity
   {
-    
-    
+
+
     private static final String KEY_CRYSTAL_VERSION = "crystal_version";
     private static final String KEY_CRYSTAL_CODENAME = "crystal_codename";
     private static final String KEY_CRYSTAL_BRANCH = "crystal_branch";
     private static final String KEY_CRYSTAL_API = "crystal_api";
     private static final String KEY_CRYSTAL_FLAVOUR = "crystal_flavour";
-    
+
     long[] mHits = new long[3];
     int i = 1;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
-    {
+      {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.crystal_info_prefs);
-        
+
         findPreference(KEY_CRYSTAL_VERSION).setSummary(Build.CRYSTAL.VERSION);
         findPreference(KEY_CRYSTAL_VERSION).setEnabled(true);
         findPreference(KEY_CRYSTAL_VERSION).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener()
-            {
+          {
 
-                @Override
-                public boolean onPreferenceClick(Preference preference) 
-                {
-                    if(i%2==0)
-                    {
-                         Intent intent = new Intent(Intent.ACTION_MAIN);
-                         //intent.setClassName("android", com.android.internal.app.CrystalEggActivity.class.getName());
-                         try {
-                             startActivity(intent);
-                         } catch (Exception e) {
-                             Log.e("CrystalInfoActivity", "Unable to start activity " + intent.toString());
-                         }
-                    }
-                    else
-                    {
-                        Toast.makeText(getApplicationContext(), "¯\\_(ツ)_/¯", Toast.LENGTH_SHORT).show();
-                    }
-                    i++;
-                    return true;
-                }
-        });
-                                                
+            @Override
+            public boolean onPreferenceClick(Preference preference)
+              {
+                if (i % 2 == 0)
+                  {
+                    Intent intent = new Intent(Intent.ACTION_MAIN);
+                    //intent.setClassName("android", com.android.internal.app.CrystalEggActivity.class.getName());
+                    try
+                      {
+                        startActivity(intent);
+                      }
+                    catch (Exception e)
+                      {
+                        Log.e("CrystalInfoActivity", "Unable to start activity " + intent.toString());
+                      }
+                  } else
+                  {
+                    Toast.makeText(getApplicationContext(), "¯\\_(ツ)_/¯", Toast.LENGTH_SHORT).show();
+                  }
+                i++;
+                return true;
+              }
+          });
+
         findPreference(KEY_CRYSTAL_CODENAME).setSummary(Build.CRYSTAL.CODENAME);
         findPreference(KEY_CRYSTAL_CODENAME).setEnabled(true);
         findPreference(KEY_CRYSTAL_BRANCH).setSummary(Build.CRYSTAL.BRANCH);
@@ -77,8 +79,8 @@ public class CrystalInfoActivity extends PreferenceActivity
         findPreference(KEY_CRYSTAL_API).setEnabled(true);
         findPreference(KEY_CRYSTAL_FLAVOUR).setSummary(Build.CRYSTAL.FLAVOUR);
         findPreference(KEY_CRYSTAL_FLAVOUR).setEnabled(true);
-        
-        
-    }
+
+
+      }
 
   }

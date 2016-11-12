@@ -33,6 +33,8 @@ import java.util.Map;
 import it.eskilop.crystalshards.R;
 import it.eskilop.crystalshards.adapters.CustomAdapter;
 
+import static it.eskilop.crystalshards.utils.CrystalAPI.GET_ROM_UPDATES_URL;
+
 public class UpdaterActivity extends AppCompatActivity
   {
     static String[] builds;
@@ -48,10 +50,9 @@ public class UpdaterActivity extends AppCompatActivity
 
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-        String url = "http://www.crystalrom.eskilop.it/ROM/BUILDS/lister.php";
 
         // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, GET_ROM_UPDATES_URL,
                 new Response.Listener<String>()
                   {
                     @Override

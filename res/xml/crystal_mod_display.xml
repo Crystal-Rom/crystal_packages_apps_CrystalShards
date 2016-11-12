@@ -20,7 +20,6 @@
     <ListPreference
         android:key="screenshot_type"
         android:title="@string/scrot_type_title"
-        android:summary="@string/scrot_type_description"
         android:entries="@array/scrot_type"
         android:entryValues="@array/scrot_type_alias"
         android:enabled="true"/>

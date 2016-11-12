@@ -26,6 +26,8 @@ import java.net.URL;
 
 import it.eskilop.crystalshards.R;
 
+import static it.eskilop.crystalshards.utils.CrystalAPI.CHANGELOG_URL;
+
 
 public class ChangelogActivity extends AppCompatActivity
   {
@@ -47,13 +49,13 @@ public class ChangelogActivity extends AppCompatActivity
                 URL u = null;
                 try
                   {
-                    u = new URL("http://www.crystalrom.eskilop.it/ROM/CHANGELOG.txt");
+                    u = new URL(CHANGELOG_URL);
                     HttpURLConnection c = (HttpURLConnection) u.openConnection();
                     c.setRequestMethod("GET");
                     c.connect();
                     InputStream in = c.getInputStream();
                     final ByteArrayOutputStream bo = new ByteArrayOutputStream();
-                    byte[] buffer = new byte[10240];
+                    byte[] buffer = new byte[1024000]; // Takes 1Mb of data
                     in.read(buffer); // Read from Buffer.
                     bo.write(buffer); // Write Into Buffer.
 

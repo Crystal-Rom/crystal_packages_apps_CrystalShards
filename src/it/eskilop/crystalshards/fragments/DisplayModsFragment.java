@@ -31,7 +31,6 @@ public class DisplayModsFragment extends PreferenceFragment implements Preferenc
   {
 
     private static final String KEY_SCREENSHOT_TYPE = "screenshot_type";
-    static boolean can_overwrite = false;
 
     public DisplayModsFragment()
       {
@@ -49,20 +48,20 @@ public class DisplayModsFragment extends PreferenceFragment implements Preferenc
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.crystal_mod_display);
 
-        findPreference(KEY_SCREENSHOT_TYPE).setOnPreferenceChangeListener(this);
+        ListPreference scrot_preference = (ListPreference) findPreference(KEY_SCREENSHOT_TYPE);
+        scrot_preference.setOnPreferenceChangeListener(this);
 
-        if (can_overwrite)
+        // Set summaries and values to the ones picked by the user
+        switch (Settings.System.getString(getActivity().getContentResolver(), Settings.System.CRYSTAL_DISPLAY_SCREENSHOT_TYPE))
           {
-            // Set summaries and values to the ones picked by the user
-            switch (Settings.System.getString(getActivity().getContentResolver(), Settings.System.CRYSTAL_DISPLAY_SCREENSHOT_TYPE))
-              {
-                case "1":
-                  scrot_preference.setSummary(getResources().getString(R.string.scrot_type_default_summary));
-                  break;
-                case "2":
-                  scrot_preference.setSummary(getResources().getString(R.string.scrot_type_partial_summary));
-                  break;
-              }
+            case "1":
+              scrot_preference.setSummary(getResources().getString(R.string.scrot_type_default_summary));
+              break;
+            case "2":
+              scrot_preference.setSummary(getResources().getString(R.string.scrot_type_partial_summary));
+              break;
+            default:
+              scrot_preference.setSummary(getResources().getString(R.string.scrot_type_description));
           }
       }
 
@@ -75,7 +74,7 @@ public class DisplayModsFragment extends PreferenceFragment implements Preferenc
         switch (preference.getKey())
           {
             case KEY_SCREENSHOT_TYPE:
-             // Settings.System.putString(resolver, Settings.System.CRYSTAL_DISPLAY_SCREENSHOT_TYPE, (String) o);
+              Settings.System.putString(resolver, Settings.System.CRYSTAL_DISPLAY_SCREENSHOT_TYPE, (String) o);
               switch ((String) o)
                 {
                   case "1":
@@ -85,7 +84,6 @@ public class DisplayModsFragment extends PreferenceFragment implements Preferenc
                     preference.setSummary(getResources().getString(R.string.scrot_type_partial_summary));
                     break;
                 }
-              can_overwrite = true;
               break;
           }
         return false;

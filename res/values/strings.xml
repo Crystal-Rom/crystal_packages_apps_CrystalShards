@@ -78,4 +78,17 @@
     <string name="misc_infos_summary">Acquamarine 1.0.0 (alpha)</string>
     <string name="misc_report">Bug Reporter</string>
     <string name="misc_report_summary">Report a bug to the developer</string>
+    <string name="statistics_title">Statistics Informations</string>
+    <string name="switch_diagnostic_infos">Send Statistic Informations</string>
+    <string name="switch_statistic_infos_default">Send statistic informations to Crystal Rom</string>
+    <string name="dont_send_stats">Don\'t send</string>
+    <string name="send_stats">Send Stats</string>
+    <string name="category_statistics_preview">Statistics informations preview</string>
+    <string name="infos_uid_title" translatable="false">Crystal UID</string>
+    <string name="infos_device_title">Device</string>
+    <string name="infos_crystal_version">Crystal Version</string>
+    <string name="infos_crystal_codename">Crystal Codename</string>
+    <string name="infos_crystal_branch">Crystal Branch</string>
+    <string name="infos_crystal_api_level">Crystal API Level</string>
+    <string name="infos_crystal_flavour">Crystal Flavour</string>
 </resources>

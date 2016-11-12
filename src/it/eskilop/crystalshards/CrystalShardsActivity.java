@@ -16,6 +16,9 @@
 
 package it.eskilop.crystalshards;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -23,8 +26,19 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.telephony.TelephonyManager;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import it.eskilop.crystalshards.fragments.AboutDevFragment;
 import it.eskilop.crystalshards.fragments.AboutRomFragment;
@@ -34,15 +48,67 @@ import it.eskilop.crystalshards.fragments.MiscellaneousFragment;
 import it.eskilop.crystalshards.fragments.PhysicalKeysModsFragment;
 import it.eskilop.crystalshards.fragments.RecentsModsFragment;
 import it.eskilop.crystalshards.fragments.StatusbarModsFragment;
+import it.eskilop.crystalshards.utils.MD5;
+
+import static it.eskilop.crystalshards.utils.CrystalAPI.REGISTER_STATISTICS_URL;
 
 public class CrystalShardsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
   {
+
+    // Todo: add permission request
+
+    SharedPreferences sp = getSharedPreferences("CrystalPrefs", MODE_PRIVATE);
+
+    TelephonyManager tm = (TelephonyManager) getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
+    private String imei = tm.getDeviceId();
+    private final String CRYSTAL_UID = new MD5(imei).getMD5();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
       {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crystal_shards);
+
+        if (sp.getBoolean("share_stats_infos", true))
+          {
+            // Instantiate the RequestQueue.
+            RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+
+            // Request a string response from the provided URL.
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, REGISTER_STATISTICS_URL,
+                    new Response.Listener<String>()
+                      {
+                        @Override
+                        public void onResponse(String response)
+                          {
+
+                          }
+                      }, new Response.ErrorListener()
+              {
+                @Override
+                public void onErrorResponse(VolleyError error)
+                  {
+                  }
+              })
+              {
+                @Override
+                protected Map<String, String> getParams()
+                  {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("crystal_uid", CRYSTAL_UID);
+                    params.put("crystal_device", Build.DEVICE);
+                    params.put("crystal_version", Build.CRYSTAL.VERSION);
+                    params.put("crystal_codename", Build.CRYSTAL.CODENAME);
+                    params.put("crystal_branch", Build.CRYSTAL.BRANCH);
+                    params.put("crystal_api_level", Build.CRYSTAL.API_LEVEL);
+                    params.put("crystal_flavour", Build.CRYSTAL.FLAVOUR);
+
+                    return params;
+                  }
+              };
+            // Add the request to the RequestQueue.
+            queue.add(stringRequest);
+          }
 
         if (savedInstanceState == null)
           {

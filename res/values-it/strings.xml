@@ -71,4 +71,16 @@
     <string name="misc_infos_summary">Acquamarine 1.0.0 (alpha)</string>
     <string name="misc_report">Segnala un Problema</string>
     <string name="misc_report_summary">Segnala un problema allo sviluppatore</string>
+    <string name="statistics_title">Informazioni diagnostiche</string>
+    <string name="switch_diagnostic_infos">Invia informazioni statistiche</string>
+    <string name="switch_statistic_infos_default">Invia informazioni statistiche a Crystal Rom</string>
+    <string name="send_stats">Invia statistiche</string>
+    <string name="dont_send_stats">Non inviare</string>
+    <string name="category_statistics_preview">Anteprima dati statistici</string>
+    <string name="infos_device_title">Dispositivo</string>
+    <string name="infos_crystal_version">Versione Crystal</string>
+    <string name="infos_crystal_codename">Nome in codice della versione</string>
+    <string name="infos_crystal_api_level">Livello API Crystal</string>
+    <string name="infos_crystal_branch">Branch Crystal</string>
+    <string name="infos_crystal_flavour">Tipologia build Crystal</string>
 </resources>

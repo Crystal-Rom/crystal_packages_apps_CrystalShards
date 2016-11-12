@@ -20,7 +20,7 @@
     <PreferenceScreen android:title="@string/misc_infos"
                       android:summary="@string/misc_infos_summary"
                       android:key="crystal_info"
-                      android:icon="@drawable/information_outline_icon"/>
+                      android:icon="@drawable/ic_crystal_acquamarine"/>
     <PreferenceScreen android:title="@string/misc_report"
                       android:summary="@string/misc_report_summary"
                       android:key="report_bug"
