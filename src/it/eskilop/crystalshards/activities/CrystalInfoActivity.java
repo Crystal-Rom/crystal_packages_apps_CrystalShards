@@ -42,7 +42,7 @@ public class CrystalInfoActivity extends PreferenceActivity
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.crystal_info_prefs);
 
-        findPreference(KEY_CRYSTAL_VERSION).setSummary(Build.CRYSTAL.VERSION);
+        //findPreference(KEY_CRYSTAL_VERSION).setSummary(Build.CRYSTAL.VERSION);
         findPreference(KEY_CRYSTAL_VERSION).setEnabled(true);
         findPreference(KEY_CRYSTAL_VERSION).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener()
           {

@@ -24,9 +24,9 @@ package it.eskilop.crystalshards.utils;
 
 public class CrystalAPI
   {
-    public static final String REGISTER_STATISTICS_URL = "api.eskilop.it/crystalrom/register_stats_infos.php";
-    public static final String SEND_BUGREPORT_URL = "api.eskilop.it/crystalrom/send_bugreport.php";
-    public static final String SEND_FEATURE_REQUEST = "api.eskilop.it/crystalrom/send_feature_request.php";
-    public static final String GET_ROM_UPDATES_URL = "api.eskilop.it/crystalrom/get_rom_builds.php";
+    public static final String REGISTER_STATISTICS_URL = "http://api.eskilop.it/crystalrom/register_stats_infos.php";
+    public static final String SEND_BUGREPORT_URL = "http://api.eskilop.it/crystalrom/send_bugreport.php";
+    public static final String SEND_FEATURE_REQUEST = "http://api.eskilop.it/crystalrom/send_feature_request.php";
+    public static final String GET_ROM_UPDATES_URL = "http://api.eskilop.it/crystalrom/get_rom_builds.php";
     public static final String CHANGELOG_URL = "http://www.crystalrom.eskilop.it/ROM/CHANGELOG.txt";
   }

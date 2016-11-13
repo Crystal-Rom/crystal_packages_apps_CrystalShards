@@ -16,11 +16,15 @@
 
 package it.eskilop.crystalshards;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -54,14 +58,8 @@ import static it.eskilop.crystalshards.utils.CrystalAPI.REGISTER_STATISTICS_URL;
 
 public class CrystalShardsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
   {
-
-    // Todo: add permission request
-
-    SharedPreferences sp = getSharedPreferences("CrystalPrefs", MODE_PRIVATE);
-
-    TelephonyManager tm = (TelephonyManager) getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
-    private String imei = tm.getDeviceId();
-    private final String CRYSTAL_UID = new MD5(imei).getMD5();
+    private static final int reqCode = 100;
+    SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -69,8 +67,25 @@ public class CrystalShardsActivity extends AppCompatActivity implements Navigati
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crystal_shards);
 
-        if (sp.getBoolean("share_stats_infos", true))
+        int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE);
+        int permchk = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+        if (permissionCheck != PackageManager.PERMISSION_GRANTED || permchk != PackageManager.PERMISSION_GRANTED)
           {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE},
+                    reqCode);
+          }
+
+        sp = getSharedPreferences("CrystalPrefs", MODE_PRIVATE);
+
+
+        if (sp.getBoolean("share_stats_infos", true) && (permissionCheck == PackageManager.PERMISSION_GRANTED && permchk == PackageManager.PERMISSION_GRANTED))
+          {
+
+            TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+            String imei = tm.getDeviceId();
+            final String CRYSTAL_UID = new MD5(imei).getMD5();
+
             // Instantiate the RequestQueue.
             RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
 
@@ -218,4 +233,56 @@ public class CrystalShardsActivity extends AppCompatActivity implements Navigati
         drawer.closeDrawer(GravityCompat.START);
         return true;
       }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults)
+      {
+        switch (requestCode)
+          {
+            case reqCode:
+              TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+              String imei = tm.getDeviceId();
+              final String CRYSTAL_UID = new MD5(imei).getMD5();
+
+              // Instantiate the RequestQueue.
+              RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+
+              // Request a string response from the provided URL.
+              StringRequest stringRequest = new StringRequest(Request.Method.POST, REGISTER_STATISTICS_URL,
+                      new Response.Listener<String>()
+                        {
+                          @Override
+                          public void onResponse(String response)
+                            {
+
+                            }
+                        }, new Response.ErrorListener()
+                {
+                  @Override
+                  public void onErrorResponse(VolleyError error)
+                    {
+                    }
+                })
+                {
+                  @Override
+                  protected Map<String, String> getParams()
+                    {
+                      Map<String, String> params = new HashMap<>();
+                      params.put("crystal_uid", CRYSTAL_UID);
+                      params.put("crystal_device", Build.DEVICE);
+                      params.put("crystal_version", Build.CRYSTAL.VERSION);
+                      params.put("crystal_codename", Build.CRYSTAL.CODENAME);
+                      params.put("crystal_branch", Build.CRYSTAL.BRANCH);
+                      params.put("crystal_api_level", Build.CRYSTAL.API_LEVEL);
+                      params.put("crystal_flavour", Build.CRYSTAL.FLAVOUR);
+
+                      return params;
+                    }
+                };
+              // Add the request to the RequestQueue.
+              queue.add(stringRequest);
+              break;
+          }
+      }
+
   }

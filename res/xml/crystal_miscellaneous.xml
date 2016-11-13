@@ -25,6 +25,12 @@
                       android:summary="@string/misc_report_summary"
                       android:key="report_bug"
                       android:icon="@drawable/bug_icon"/>
+    <PreferenceScreen android:key="key_info_stats"
+                      android:title="@string/statistics_title"
+                      android:enabled="true">
+        <intent android:targetPackage="it.eskilop.crystalshards"
+                android:targetClass="it.eskilop.crystalshards.activities.StatisticInfosActivity"/>
+    </PreferenceScreen>
     <PreferenceCategory
         android:title="@string/category_links">
         <PreferenceScreen android:title="@string/links_mainsite_title"
