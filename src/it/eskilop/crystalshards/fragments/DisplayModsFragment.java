@@ -23,6 +23,7 @@ import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import java.lang.NullPointerException;
 import android.provider.Settings;
 
 import it.eskilop.crystalshards.R;
@@ -50,25 +51,28 @@ public class DisplayModsFragment extends PreferenceFragment implements Preferenc
 
         ListPreference scrot_preference = (ListPreference) findPreference(KEY_SCREENSHOT_TYPE);
         scrot_preference.setOnPreferenceChangeListener(this);
-	
-	if (!Settings.System.getString(getActivity().getContentResolver(), Settings.System.CRYSTAL_DISPLAY_SCREENSHOT_TYPE).equals(null))
-	{
-          // Set summaries and values to the ones picked by the user
-          switch (Settings.System.getString(getActivity().getContentResolver(), Settings.System.CRYSTAL_DISPLAY_SCREENSHOT_TYPE))
+        
+        try
           {
-            case "1":
-              scrot_preference.setSummary(getResources().getString(R.string.scrot_type_default_summary));
-              break;
-            case "2":
-              scrot_preference.setSummary(getResources().getString(R.string.scrot_type_partial_summary));
-              break;
-          }
+            if (!Settings.System.getString(getActivity().getContentResolver(), Settings.System.CRYSTAL_DISPLAY_SCREENSHOT_TYPE).equals(null))
+              {
+                // Set summaries and values to the ones picked by the user
+                switch (Settings.System.getString(getActivity().getContentResolver(), Settings.System.CRYSTAL_DISPLAY_SCREENSHOT_TYPE))
+                  {
+                    case "1":
+                      scrot_preference.setSummary(getResources().getString(R.string.scrot_type_default_summary));
+                      break;
+                    case "2":
+                      scrot_preference.setSummary(getResources().getString(R.string.scrot_type_partial_summary));
+                      break;
+                  }
 
-	}
-	else
-	{
-	  scrot_preference.setSummary(getResources().getString(R.string.scrot_type_description));
-	}
+              }
+          } 
+          catch (NullPointerException e)
+            {
+              scrot_preference.setSummary(getResources().getString(R.string.scrot_type_description));
+            }
       }
 
     @Override
