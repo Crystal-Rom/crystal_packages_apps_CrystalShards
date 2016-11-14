@@ -42,7 +42,7 @@ public class CrystalInfoActivity extends PreferenceActivity
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.crystal_info_prefs);
 
-        //findPreference(KEY_CRYSTAL_VERSION).setSummary(Build.CRYSTAL.VERSION);
+        findPreference(KEY_CRYSTAL_VERSION).setSummary(Build.CRYSTAL.VERSION);
         findPreference(KEY_CRYSTAL_VERSION).setEnabled(true);
         findPreference(KEY_CRYSTAL_VERSION).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener()
           {
@@ -70,7 +70,7 @@ public class CrystalInfoActivity extends PreferenceActivity
                 return true;
               }
           });
-
+          
         findPreference(KEY_CRYSTAL_CODENAME).setSummary(Build.CRYSTAL.CODENAME);
         findPreference(KEY_CRYSTAL_CODENAME).setEnabled(true);
         findPreference(KEY_CRYSTAL_BRANCH).setSummary(Build.CRYSTAL.BRANCH);

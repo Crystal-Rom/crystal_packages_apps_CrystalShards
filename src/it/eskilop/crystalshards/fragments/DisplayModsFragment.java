@@ -50,9 +50,11 @@ public class DisplayModsFragment extends PreferenceFragment implements Preferenc
 
         ListPreference scrot_preference = (ListPreference) findPreference(KEY_SCREENSHOT_TYPE);
         scrot_preference.setOnPreferenceChangeListener(this);
-
-        // Set summaries and values to the ones picked by the user
-        switch (Settings.System.getString(getActivity().getContentResolver(), Settings.System.CRYSTAL_DISPLAY_SCREENSHOT_TYPE))
+	
+	if (!Settings.System.getString(getActivity().getContentResolver(), Settings.System.CRYSTAL_DISPLAY_SCREENSHOT_TYPE).equals(null))
+	{
+          // Set summaries and values to the ones picked by the user
+          switch (Settings.System.getString(getActivity().getContentResolver(), Settings.System.CRYSTAL_DISPLAY_SCREENSHOT_TYPE))
           {
             case "1":
               scrot_preference.setSummary(getResources().getString(R.string.scrot_type_default_summary));
@@ -60,9 +62,13 @@ public class DisplayModsFragment extends PreferenceFragment implements Preferenc
             case "2":
               scrot_preference.setSummary(getResources().getString(R.string.scrot_type_partial_summary));
               break;
-            default:
-              scrot_preference.setSummary(getResources().getString(R.string.scrot_type_description));
           }
+
+	}
+	else
+	{
+	  scrot_preference.setSummary(getResources().getString(R.string.scrot_type_description));
+	}
       }
 
     @Override
